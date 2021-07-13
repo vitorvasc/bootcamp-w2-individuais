@@ -12,7 +12,7 @@ public class SubjectDTO {
 
     @NotNull(message = "O nome deve ser válido.")
     @Size(min = 8, max = 50, message = "O tamanho do nome deve estar entre 8 e 50 caracteres.")
-    @Pattern(regexp = "[a-zA-ZáàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ\\s]+", message = "O nome possui caracteres inválidos.")
+    @Pattern(regexp = "[a-zA-ZáàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ\\s]+", message = "O nome da matéria possui caracteres inválidos.")
     @JsonProperty("subject")
     private String name;
 

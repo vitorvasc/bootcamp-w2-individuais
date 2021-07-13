@@ -1,5 +1,6 @@
 package br.com.meli.diploma.bootcampspringdiploma.service;
 
+import br.com.meli.diploma.bootcampspringdiploma.entity.Subject;
 import br.com.meli.diploma.bootcampspringdiploma.repository.DiplomaRepository;
 import br.com.meli.diploma.bootcampspringdiploma.dto.DiplomaDTO;
 import br.com.meli.diploma.bootcampspringdiploma.dto.StudentDTO;
@@ -22,13 +23,11 @@ public class DiplomaService {
         this.diplomaRepository = diplomaRepository;
     }
 
-    public DiplomaDTO create(StudentDTO studentDTO) {
-        double average = calculateAverage(studentDTO.getSubjects());
+    public DiplomaDTO create(Student student) {
+        double average = calculateAverage(student.getSubjects());
 
         if (average < 9.0)
             throw new StudentAverageNotReached("O estudante não atingiu a média mínima!");
-
-        Student student = StudentDTO.convert(studentDTO);
 
         Diploma diploma = writeDiploma(student, average);
 
@@ -37,9 +36,9 @@ public class DiplomaService {
         return DiplomaDTO.convert(diploma);
     }
 
-    public double calculateAverage(List<SubjectDTO> subjectDTOList) {
-        return subjectDTOList.stream()
-                .mapToDouble(s -> SubjectDTO.convert(s).getNote())
+    public double calculateAverage(List<Subject> subjectList) {
+        return subjectList.stream()
+                .mapToDouble(Subject::getNote)
                 .average()
                 .orElseThrow(RuntimeException::new);
     }

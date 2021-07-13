@@ -21,19 +21,19 @@ public class Student {
                 .collect(Collectors.toList());
     }
 
-    public String getNome() {
+    public String getName() {
         return name;
     }
 
-    public void setNome(String name) {
+    public void setName(String name) {
         this.name = name;
     }
 
-    public List<Subject> getDisciplinas() {
+    public List<Subject> getSubjects() {
         return subjects;
     }
 
-    public void setDisciplinas(List<Subject> subjects) {
+    public void setSubjects(List<Subject> subjects) {
         this.subjects = subjects;
     }
 }

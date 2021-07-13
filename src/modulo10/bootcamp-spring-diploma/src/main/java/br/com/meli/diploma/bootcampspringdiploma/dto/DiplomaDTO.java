@@ -8,9 +8,6 @@ public class DiplomaDTO {
     private double average;
     private StudentDTO student;
 
-    public DiplomaDTO() {
-    }
-
     public DiplomaDTO(String message, double average, StudentDTO student) {
         this.message = message;
         this.average = average;
@@ -49,5 +46,14 @@ public class DiplomaDTO {
 
     public static DiplomaDTO convert(Diploma diploma) {
         return new DiplomaDTO(diploma);
+    }
+
+    @Override
+    public String toString() {
+        return "DiplomaDTO{" +
+                "message='" + message + '\'' +
+                ", average=" + average +
+                ", student=" + student.getName() +
+                '}';
     }
 }
