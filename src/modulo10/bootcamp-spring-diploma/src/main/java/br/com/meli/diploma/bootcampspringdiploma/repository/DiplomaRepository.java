@@ -1,4 +1,4 @@
-package br.com.meli.diploma.bootcampspringdiploma.dao;
+package br.com.meli.diploma.bootcampspringdiploma.repository;
 
 
 import br.com.meli.diploma.bootcampspringdiploma.entity.Diploma;
@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public class DiplomaDAO {
+public class DiplomaRepository {
     private static final List<Diploma> diplomas = new ArrayList<>();
 
     public List<Diploma> getList() {
