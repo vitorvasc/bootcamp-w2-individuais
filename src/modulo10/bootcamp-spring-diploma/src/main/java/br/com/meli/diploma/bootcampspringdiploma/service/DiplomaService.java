@@ -6,6 +6,7 @@ import br.com.meli.diploma.bootcampspringdiploma.dto.StudentDTO;
 import br.com.meli.diploma.bootcampspringdiploma.dto.SubjectDTO;
 import br.com.meli.diploma.bootcampspringdiploma.entity.Diploma;
 import br.com.meli.diploma.bootcampspringdiploma.entity.Student;
+import br.com.meli.diploma.bootcampspringdiploma.exception.StudentAverageNotReached;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,11 +15,11 @@ import java.util.stream.Collectors;
 @Service
 public class DiplomaService {
 
-    private DiplomaDAO dao;
+    private DiplomaDAO diplomaDAO;
 
     @Autowired
-    public DiplomaService(DiplomaDAO dao) {
-        this.dao = dao;
+    public DiplomaService(DiplomaDAO diplomaDAO) {
+        this.diplomaDAO = diplomaDAO;
     }
 
     public DiplomaDTO create(StudentDTO studentDTO) {
@@ -28,7 +29,7 @@ public class DiplomaService {
                 .orElseThrow(RuntimeException::new);
 
         if (average < 9.0)
-            throw new RuntimeException("Falha ao criar diploma! Média inferior a 9.0");
+            throw new StudentAverageNotReached("O estudante não atingiu a média mínima!");
 
         Student student = new Student(
                 studentDTO.getName(),
@@ -38,12 +39,13 @@ public class DiplomaService {
         );
 
         Diploma diploma = new Diploma(
+                diplomaDAO.getNextId(),
                 student,
                 average,
                 "Sua média foi de " + average
         );
 
-        dao.add(diploma);
+        diplomaDAO.add(diploma);
 
         return DiplomaDTO.convert(diploma);
     }

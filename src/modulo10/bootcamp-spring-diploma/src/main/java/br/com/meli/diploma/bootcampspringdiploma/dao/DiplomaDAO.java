@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class DiplomaDAO {
@@ -19,13 +20,13 @@ public class DiplomaDAO {
         diplomas.add(diploma);
     }
 
-//    public Diploma get(int id) {
-//        Optional<Diploma> diplomaOptional = diplomas.stream()
-//                .filter(d -> d.getId() == id)
-//                .findFirst();
-//
-//        return diplomaOptional.orElse(null);
-//    }
+    public Diploma get(int id) {
+        Optional<Diploma> diplomaOptional = diplomas.stream()
+                .filter(d -> d.getId() == id)
+                .findFirst();
+
+        return diplomaOptional.orElse(null);
+    }
 
     public int getNextId() {
         return diplomas.size() + 1;

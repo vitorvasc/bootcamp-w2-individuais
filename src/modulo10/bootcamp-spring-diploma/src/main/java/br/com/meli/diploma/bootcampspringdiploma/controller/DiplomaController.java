@@ -24,18 +24,8 @@ public class DiplomaController {
         this.service = service;
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<DiplomaDTO> view(@PathVariable int id) {
-//        Diploma diploma = service.get(id);
-        return new ResponseEntity<DiplomaDTO>(new DiplomaDTO(), HttpStatus.CREATED);
-
-//        return new ResponseEntity<DiplomaDTO>(DiplomaDTO.converter(diploma), HttpStatus.OK);
-    }
-
     @PostMapping("/analyzeNotes")
     public ResponseEntity<DiplomaDTO> create(@Valid @RequestBody StudentDTO student) {
-        System.out.println(student.getName());
-
         return new ResponseEntity<DiplomaDTO>(service.create(student), HttpStatus.CREATED);
     }
 }
