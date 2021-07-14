@@ -36,4 +36,21 @@ public class Student {
     public void setSubjects(List<Subject> subjects) {
         this.subjects = subjects;
     }
+
+    public double calculateAverage() {
+        return getSubjects().stream()
+                .mapToDouble(Subject::getNote)
+                .average()
+                .orElse(0.0);
+    }
+
+    public Diploma writeDiploma() {
+        double average = this.calculateAverage();
+
+        return new Diploma(
+                this,
+                average,
+                "Sua média foi de " + average
+        );
+    }
 }

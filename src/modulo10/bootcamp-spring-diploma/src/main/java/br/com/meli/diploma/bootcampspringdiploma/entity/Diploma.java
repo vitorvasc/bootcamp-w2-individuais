@@ -2,47 +2,37 @@ package br.com.meli.diploma.bootcampspringdiploma.entity;
 
 public class Diploma {
 
-    private int id;
-    private Student aluno;
-    private double media;
-    private String mensagem;
+    private Student student;
+    private double average;
+    private String message;
 
-    public Diploma(int id, Student aluno, double media, String mensagem) {
-        this.id = id;
-        this.aluno = aluno;
-        this.media = media;
-        this.mensagem = mensagem;
+    public Diploma(Student student, double average, String message) {
+        this.student = student;
+        this.average = average;
+        this.message = message;
     }
 
-    public int getId() {
-        return id;
+    public Student getStudent() {
+        return student;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setStudent(Student student) {
+        this.student = student;
     }
 
-    public Student getAluno() {
-        return aluno;
+    public double getAverage() {
+        return average;
     }
 
-    public void setAluno(Student aluno) {
-        this.aluno = aluno;
+    public void setAverage(double media) {
+        this.average = media;
     }
 
-    public double getMedia() {
-        return media;
+    public String getMessage() {
+        return message;
     }
 
-    public void setMedia(double media) {
-        this.media = media;
-    }
-
-    public String getMensagem() {
-        return mensagem;
-    }
-
-    public void setMensagem(String mensagem) {
-        this.mensagem = mensagem;
+    public void setMessage(String message) {
+        this.message = message;
     }
 }

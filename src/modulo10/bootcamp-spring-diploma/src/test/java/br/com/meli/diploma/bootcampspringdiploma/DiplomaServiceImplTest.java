@@ -10,7 +10,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 
 import javax.validation.ConstraintViolation;
 import javax.validation.Validation;
@@ -22,7 +21,7 @@ import java.util.Set;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
-public class CertificateServiceImplTest {
+public class DiplomaServiceImplTest {
 
     private DiplomaService diplomaService;
     private Validator validator;
@@ -48,19 +47,13 @@ public class CertificateServiceImplTest {
 
         Student student = StudentDTO.convert(studentDTO);
 
-        // expected
-        DiplomaDTO diplomaDTO = new DiplomaDTO(
-                "Sua média foi de 10.0",
-                10,
-                StudentDTO.convert(student)
-        );
-
         // exec
         DiplomaDTO resultDiplomaDTO = diplomaService.create(student);
 
         // check
-        assertEquals(diplomaDTO.getStudent().getName(), student.getName());
-        assertEquals(diplomaDTO.getMessage(), resultDiplomaDTO.getMessage());
+        assertEquals("Vitor Vasconcellos", resultDiplomaDTO.getStudent().getName());
+        assertEquals("Sua média foi de 10.0", resultDiplomaDTO.getMessage());
+        assertEquals(10, resultDiplomaDTO.getAverage());
     }
 
     @Test

@@ -15,9 +15,9 @@ public class DiplomaDTO {
     }
 
     public DiplomaDTO(Diploma diploma) {
-        this.message = diploma.getMensagem();
-        this.average = diploma.getMedia();
-        this.student = StudentDTO.convert(diploma.getAluno());
+        this.message = diploma.getMessage();
+        this.average = diploma.getAverage();
+        this.student = StudentDTO.convert(diploma.getStudent());
     }
 
     public String getMessage() {
@@ -46,14 +46,5 @@ public class DiplomaDTO {
 
     public static DiplomaDTO convert(Diploma diploma) {
         return new DiplomaDTO(diploma);
-    }
-
-    @Override
-    public String toString() {
-        return "DiplomaDTO{" +
-                "message='" + message + '\'' +
-                ", average=" + average +
-                ", student=" + student.getName() +
-                '}';
     }
 }
